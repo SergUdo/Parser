@@ -1,4 +1,9 @@
-= form_for MerchantsList.new, {class: 'form-inline'} do |f|
-  .form-group
-    = f.file_field :list_file, class: 'form-contral'
-    = f.submit :ok,  class: 'btn btn-primary'  
+.row
+  .col-md-12
+    = form_for MerchantsList.new do |f|
+      .form-group
+        = f.label :list_file
+          | File
+          = f.file_field :list_file, class: 'form-control-file'
+      .form-group
+        = f.submit :ok,  class: 'btn btn-primary'  

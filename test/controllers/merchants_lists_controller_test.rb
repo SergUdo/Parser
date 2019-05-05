@@ -15,9 +15,4 @@ class MerchantsListsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get create" do
-    post merchants_lists_url
-    assert_response :redirect
-  end
-
 end
