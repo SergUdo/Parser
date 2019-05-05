@@ -1,22 +1,25 @@
-table
-  thead
-    th id 
-    th origin_id
-    th name
-    th city
-    th kind
-    th owner
-    th address
-    th created_at
-  tbody
-    - @merchants.each do |m|
-      tr 
-        td = m.id
-        td = m.origin_id
-        td = m.name
-        td = m.city
-        td = m.kind
-        td = m.owner
-        td = m.address
-        td = m.created_at
-          
+.conteiner-fluid
+    .row
+      .col-md-12
+        table.table.table-dark
+          thead
+            th id 
+            th origin_id
+            th name
+            th city
+            th kind
+            th owner
+            th address
+            th created_at
+          tbody
+            - @merchants.each do |m|
+              tr 
+                td = m.id
+                td = m.origin_id
+                td = m.name
+                td = m.city
+                td = m.kind
+                td = m.owner
+                td = m.address
+                td = m.created_at
+                  

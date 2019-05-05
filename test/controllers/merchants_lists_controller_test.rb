@@ -2,11 +2,11 @@ require 'test_helper'
 
 class MerchantsListsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    Merchant.create(name: "Магазин 24")
-    Merchant.create(name: "Магазин 25")
-    Merchant.create(name: "Магазин 26")
+    Merchant.create(name: "Магазин 24", address: "Шевченко 2")
+    Merchant.create(name: "Магазин 25", address: "Шевченко 2")
+    Merchant.create(name: "Магазин 26", address: "Шевченко 2")
     get merchants_lists_url
-    assert_equal assigns(:merchants).size, 3 
+    assert_equal assigns(:merchants).size, 3
     assert_response :success
   end
 
@@ -17,7 +17,7 @@ class MerchantsListsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get create" do
     post merchants_lists_url
-    assert_response :success
+    assert_response :redirect
   end
 
 end

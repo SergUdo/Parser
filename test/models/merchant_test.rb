@@ -13,5 +13,10 @@ class MerchantTest < ActiveSupport::TestCase
       city:"Константиновка",
       address:"ул.Нахимова")
     assert m.persisted?
+    mm = m.dup
+    assert_raises ActiveRecord::RecordNotUnique do
+      mm.save 
+    end
   end
+
 end

@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_02_113034) do
+ActiveRecord::Schema.define(version: 2019_05_05_110329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_postgresql_files", force: :cascade do |t|
+    t.oid "oid"
+    t.string "key"
+    t.index ["key"], name: "index_active_storage_postgresql_files_on_key", unique: true
+  end
 
   create_table "merchants", force: :cascade do |t|
     t.integer "origin_id"
@@ -24,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_05_02_113034) do
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["address", "name"], name: "index_merchants_on_address_and_name", unique: true
   end
 
   create_table "merchants_lists", force: :cascade do |t|
@@ -31,4 +59,5 @@ ActiveRecord::Schema.define(version: 2019_05_02_113034) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
 end
