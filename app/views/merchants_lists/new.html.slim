@@ -6,4 +6,8 @@
           | File
           = f.file_field :list_file, class: 'form-control-file'
       .form-group
+        = f.label :ignore_header
+          | Ignore header
+          = f.check_box :ignore_header
+      .form-group
         = f.submit :ok,  class: 'btn btn-primary'  

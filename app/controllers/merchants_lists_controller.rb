@@ -6,7 +6,6 @@ class MerchantsListsController < ApplicationController
   end
 
   def new
-
   end
 
   def create
@@ -17,6 +16,6 @@ class MerchantsListsController < ApplicationController
   private
 
   def list_params
-    params.require(:merchants_list).permit(:list_file)
+    params.require(:merchants_list).permit(:list_file, :ignore_header)
   end
 end

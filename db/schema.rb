@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_06_093319) do
+ActiveRecord::Schema.define(version: 2019_05_06_120141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_05_06_093319) do
     t.integer "origin_id"
     t.string "kind"
     t.string "owner"
-    t.string "name"
+    t.string "name", default: "Магазин"
     t.string "address"
     t.string "city"
     t.datetime "created_at", null: false
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_05_06_093319) do
   create_table "merchants_lists", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "ignore_header"
   end
 
   create_table "users", force: :cascade do |t|

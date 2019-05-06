@@ -11,7 +11,8 @@ class MerchantsList < ApplicationRecord
   end
 
   def parse!
-    open_file.each do |row|
+    open_file.each_with_index do |row, index|
+      next if index.zero? && ignore_header
       self.class.create_merchant(*row.first(6)) # Todo: refactor
     end
   end
@@ -26,14 +27,14 @@ class MerchantsList < ApplicationRecord
 
   def self.create_merchant(oid, k, o, n, c, a)
     begin
-      Merchant.create(
+      Merchant.new(
         origin_id: oid, 
         kind: k,
         owner: o,
         name: n,
         city: c,
         address: a
-      )
+      ).save
     rescue ActiveRecord::RecordNotUnique
       nil
     end
