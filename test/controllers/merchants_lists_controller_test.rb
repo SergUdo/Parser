@@ -5,14 +5,20 @@ class MerchantsListsControllerTest < ActionDispatch::IntegrationTest
     Merchant.create(name: "Магазин 24", address: "Шевченко 2")
     Merchant.create(name: "Магазин 25", address: "Шевченко 2")
     Merchant.create(name: "Магазин 26", address: "Шевченко 2")
-    get merchants_lists_url
-    assert_equal assigns(:merchants).size, 3
-    assert_response :success
+    visit merchants_lists_url
+    assert page.all(:css, 'tr').count == 3
   end
 
-  test "should get new" do
+  test "redirect without user" do
     get new_merchants_list_url
-    assert_response :success
+    assert_response :redirect
+  end
+
+  test "get new with user" do
+    u = User.create(email: "vasian@example.com", password: "lkjlkjlk")
+    sign_in u 
+    visit new_merchants_list_url
+    assert page.has_content?("File")
   end
 
 end

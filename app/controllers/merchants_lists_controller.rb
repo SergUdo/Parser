@@ -1,4 +1,6 @@
 class MerchantsListsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+
   def index
     @merchants = Merchant.all
   end
@@ -8,7 +10,6 @@ class MerchantsListsController < ApplicationController
   end
 
   def create
-   # MerchantsList.parse(file_path)
     MerchantsList.create(list_params)
     redirect_to merchants_lists_url
   end
@@ -17,9 +18,5 @@ class MerchantsListsController < ApplicationController
 
   def list_params
     params.require(:merchants_list).permit(:list_file)
-  end
-
-  def file_path
-    params.dig(:merchants_list, :list_file)
   end
 end

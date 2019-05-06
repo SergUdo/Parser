@@ -17,6 +17,7 @@ end
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
   include Capybara::Minitest::Assertions
+  include Devise::Test::IntegrationHelpers
 
   def teardown
     Capybara.reset_sessions!
