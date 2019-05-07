@@ -1,5 +1,6 @@
 class MerchantsListsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  skip_before_action:verify_authenticity_token
 
   def index
     @merchants = Merchant.all

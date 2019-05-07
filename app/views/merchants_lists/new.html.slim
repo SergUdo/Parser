@@ -1,4 +1,31 @@
 .row
+  .col-sm-1.col-md-2.col-lg-4
+  .col-sm-10.col-md-8.col-lg-4
+    .col-sm-12.text-center
+      h1 New Merchants list
+    = form_for MerchantsList.new do |f|
+      .form-group.row
+        label.col-sm-2.col-form-label[for="inputPassword3"]
+          | File
+        .col-sm-10
+          = f.file_field :list_file, class: 'form-control-file'
+      .form-group.row
+        .col-sm-2
+        .col-sm-10
+          .form-check
+            input#gridCheck1.form-check-input[type="checkbox" name="merchants_list[ignore_header]"]
+            label.form-check-label[for="gridCheck1"]
+              |  Ignore header
+      .form-group.row
+        .col-sm-2
+        .col-sm-10
+          button.btn.btn-block.expand.btn-primary[type="submit" ]
+            | Ok
+  .col-sm-1.col-md-2.col-lg-4
+  
+
+
+//.row
   .col-md-12
     = form_for MerchantsList.new do |f|
       .form-group

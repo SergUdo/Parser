@@ -25,7 +25,7 @@ class MerchantsList < ApplicationRecord
     Roo::Spreadsheet.open tempfile, extension: :ods
   end
 
-  def self.create_merchant(oid, k, o, n, c, a)
+  def self.create_merchant(oid, k, o, n, a, c)
     begin
       Merchant.new(
         origin_id: oid, 
