@@ -1,0 +1,11 @@
+div[data-map=true]
+coffeescript:
+  $ ->
+    { GoogleMap } = app.google.classes
+    
+    googleMap = new GoogleMap($('[data-map]:eq(0)').data('home'))
+    googleMap.placeMarkers($("[data-map]:eq(0)").data("markers-list"))
+
+    $(document).on 'click', '[data-tab]', ->
+      googleMap.deleteMarkers()
+      googleMap.placeMarkers($("[data-map]:eq($(@).index())").data("markers-list"))

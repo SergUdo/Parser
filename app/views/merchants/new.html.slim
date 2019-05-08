@@ -1,0 +1,49 @@
+.row
+  .col-sm-1.col-md-2.col-lg-4
+  .col-sm-10.col-md-8.col-lg-4
+    .col-sm-12.text-center
+      h1 Create merchant
+    = form_for @merchant do |f| 
+      .form-group.row
+        label.col-sm-2.col-form-label[for="inputName"]
+          | Name
+        .col-sm-10
+          input#inputName.form-control[type="text" placeholder="Name" name="merchant[name]"] 
+      .form-group.row
+        label.col-sm-2.col-form-label[for="inputOwner"]
+          | Owner
+        .col-sm-10
+          input#inputOwner.form-control[type="text" placeholder="Owner" name="merchant[owner]"] 
+      .form-group.row
+        label.col-sm-2.col-form-label[for="inputKind"]
+          | Kind
+        .col-sm-10
+          input#inputKind.form-control[type="text" placeholder="Kind" name="merchant[kind]"] 
+      .form-group.row
+        label.col-sm-2.col-form-label[for="inputAddress"]
+          | Address
+        .col-sm-10
+          input#inputAddress.form-control[type="text" placeholder="Address" name="merchant[address]"] 
+      .form-group.row
+        label.col-sm-2.col-form-label[for="inputCity"]
+          | City
+        .col-sm-10
+          input#inputCity.form-control[type="text" placeholder="City" name="merchant[city]"] 
+      .form-group.row
+        label.col-sm-2.col-form-label[for="inputLatitude"]
+          | Latitude
+        .col-sm-10
+          input#inputLatitude.form-control[type="number" placeholder="Latitude" name="merchant[latitude]"] 
+      .form-group.row
+        label.col-sm-2.col-form-label[for="inputLongitude"]
+          | Longitude
+        .col-sm-10
+          input#inputLongitude.form-control[type="number" placeholder="Longitude" name="merchant[longitude]"] 
+
+      
+      .form-group.row
+        .col-sm-2
+        .col-sm-10
+          button.btn.btn-block.expand.btn-primary[type="submit" ]
+            | Create
+  .col-sm-1.col-md-2.col-lg-4
