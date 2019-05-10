@@ -4,7 +4,7 @@ class MerchantsList < ApplicationRecord
   has_one_attached :list_file
   attr_writer :list_file_rows
   after_create :enqueue_parse
-  delegate :blob, to: :list_file, prefix: false
+  delegate :blob, to: :list_file, prefix: false, allow_nil: true
 
   def enqueue_parse
     ParseDocumentJob.perform_later(self)

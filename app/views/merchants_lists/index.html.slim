@@ -14,7 +14,11 @@
           - @merchants.each do |m|
             tr 
               td = m.id
-              td = m.name
+              td
+                - if m.geocoded? 
+                  = link_to m.name, m
+                - else
+                  = m.name
               td = m.kind
               td = m.owner
               td = m.city

@@ -1,11 +1,2 @@
-div[data-map=true]
-coffeescript:
-  $ ->
-    { GoogleMap } = app.google.classes
-    
-    googleMap = new GoogleMap($('[data-map]:eq(0)').data('home'))
-    googleMap.placeMarkers($("[data-map]:eq(0)").data("markers-list"))
-
-    $(document).on 'click', '[data-tab]', ->
-      googleMap.deleteMarkers()
-      googleMap.placeMarkers($("[data-map]:eq($(@).index())").data("markers-list"))
+p
+  = image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&markers=size:small%7Ccolor:red%7C#{@merchant.latitude},#{@merchant.longitude}&key=#{ENV['GOOGLE_API_KEY']}", alt: "Map"
