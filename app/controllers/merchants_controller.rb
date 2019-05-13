@@ -10,7 +10,7 @@ class MerchantsController < ApplicationController
   end
 
   def index
-    @merchants = Merchants.where(index_params)
+    @merchants = Merchants.paginate(index_params)
   end
 
   def create
@@ -38,7 +38,7 @@ end
   protected
 
   def index_params
-    params.permit(:kind, :city)
+    params.permit(:page)
   end
 
   def set_merchant

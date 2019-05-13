@@ -1,6 +1,9 @@
 .container-fluid
   .row
     .col-md-12
+      = paginate @merchants, outer_window: 1
+  .row
+    .col-md-12
       table.table.table-dark
         thead
           th ID

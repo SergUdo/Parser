@@ -1,9 +1,17 @@
 class MerchantsList < ApplicationRecord
   #STORAGE_SERVICE = ActiveStorage::Service::DiskService.new(root: Rails.root.to_s + '/storage/')
+  validates :address_column, presence: true
+  validates :kind_column, presence: true
+  validates :city_column, presence: true
+  validates :owner_column, presence: true
+  validates :name_column, presence: true
 
   has_one_attached :list_file
+
   attr_writer :list_file_rows
+
   after_create :enqueue_parse
+
   delegate :blob, to: :list_file, prefix: false, allow_nil: true
 
   def enqueue_parse
@@ -13,7 +21,7 @@ class MerchantsList < ApplicationRecord
   def parse!
     open_file.each_with_index do |row, index|
       next if index.zero? && ignore_header
-      self.class.create_merchant(*row.first(6)) # Todo: refactor
+      create_merchant row
     end
   end
 
@@ -25,15 +33,15 @@ class MerchantsList < ApplicationRecord
     Roo::Spreadsheet.open tempfile, extension: :ods
   end
 
-  def self.create_merchant(oid, k, o, n, a, c)
+  def create_merchant(row)
     begin
       Merchant.new(
-        origin_id: oid, 
-        kind: k,
-        owner: o,
-        name: n,
-        city: c,
-        address: a
+        origin_id: 0, 
+        kind: row[kind_column],
+        owner: row[owner_column],
+        name: row[name_column],
+        city: row[city_column],
+        address: row[address_column]
       ).save
     rescue ActiveRecord::RecordNotUnique
       nil

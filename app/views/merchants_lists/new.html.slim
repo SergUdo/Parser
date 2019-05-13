@@ -5,10 +5,35 @@
       h1 New Merchants list
     = form_for MerchantsList.new do |f|
       .form-group.row
-        label.col-sm-2.col-form-label[for="inputPassword3"]
+        label.col-sm-2.col-form-label[for="merchants_list_list_file"]
           | File
         .col-sm-10
           = f.file_field :list_file, class: 'form-control-file'
+      .form-group.row
+        label.col-sm-2.col-form-label
+          | Name column
+        .col-sm-10
+          = f.number_field :name_column, class: 'form-control'
+      .form-group.row
+        label.col-sm-2.col-form-label
+          | Owner column
+        .col-sm-10
+          = f.number_field :owner_column, class: 'form-control'
+      .form-group.row
+        label.col-sm-2.col-form-label
+          | Kind column
+        .col-sm-10
+          = f.number_field :kind_column, class: 'form-control'
+      .form-group.row
+        label.col-sm-2.col-form-label
+          | City column
+        .col-sm-10
+          = f.number_field :city_column, class: 'form-control'
+      .form-group.row
+        label.col-sm-2.col-form-label
+          | Address column
+        .col-sm-10
+          = f.number_field :address_column, class: 'form-control'
       .form-group.row
         .col-sm-2
         .col-sm-10
