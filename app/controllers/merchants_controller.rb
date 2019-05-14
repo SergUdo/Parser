@@ -10,13 +10,15 @@ class MerchantsController < ApplicationController
   end
 
   def index
-    @merchants = Merchants.paginate(index_params)
+    @merchants = Merchant.page(params[:page]).per(100)
   end
 
   def create
     @merchant = Merchant.new(merchant_params)
     if @merchant.save 
-      redirect_to @merchant
+      render :show
+    else
+      render :new
     end
   end
 
@@ -26,7 +28,7 @@ class MerchantsController < ApplicationController
   def update
     if @merchant.update_attributes(merchant_params)
       flash[:success] = "Profile updated"
-      redirect_to @merchant
+      render 'show'
     else
       render 'edit'
   end
@@ -37,19 +39,15 @@ end
 
   protected
 
-  def index_params
-    params.permit(:page)
-  end
-
   def set_merchant
     @merchant = Merchant.find(params[:id])
   end
 
   def merchant_params
     params.require(:merchant).permit(
-                                      :name, :owner, :kind, :address,
-                                      :city, :latitude, :longitude
-                                      )
+    :name, :owner, :kind, :address,
+    :city, :latitude, :longitude
+    )
   end
 
 end

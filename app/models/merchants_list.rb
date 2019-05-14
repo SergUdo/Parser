@@ -34,17 +34,12 @@ class MerchantsList < ApplicationRecord
   end
 
   def create_merchant(row)
-    begin
-      Merchant.new(
-        origin_id: 0, 
-        kind: row[kind_column],
-        owner: row[owner_column],
-        name: row[name_column],
-        city: row[city_column],
-        address: row[address_column]
-      ).save
-    rescue ActiveRecord::RecordNotUnique
-      nil
-    end
+    Merchant.new(
+      kind: row[kind_column],
+      owner: row[owner_column],
+      name: row[name_column],
+      city: row[city_column],
+      address: row[address_column]
+    ).save
   end
 end

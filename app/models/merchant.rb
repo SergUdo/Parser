@@ -1,5 +1,6 @@
 class Merchant < ApplicationRecord
   validates :address, presence: true
+  validates :name, uniqueness: {scope: :address}
   geocoded_by :full_address
   after_validation :geocode
 

@@ -1,2 +1,30 @@
-h1 Merchants#index
-p Find me in app/views/merchants/index.html.slim
+.container-fluid
+  .row
+    .col-md-12
+      = paginate @merchants, outer_window: 1
+  .row
+    .col-md-12
+      table.table.table-dark
+        thead
+          th ID
+          th Название
+          th Тип
+          th Владелец
+          th Город
+          th Адрес
+          th Добавлен
+        tbody
+          - @merchants.each do |m|
+            tr 
+              td = m.id
+              td
+                - if m.geocoded? 
+                  = link_to m.name, m
+                - else
+                  = m.name
+              td = m.kind
+              td = m.owner
+              td = m.city
+              td = m.address
+              td = m.created_at
+                    
