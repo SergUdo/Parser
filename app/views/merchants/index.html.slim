@@ -1,7 +1,7 @@
 .container-fluid
   .row
     .col-md-12
-      = paginate @merchants, outer_window: 1
+      = paginate @merchants, views_prefix: 'templates'
   .row
     .col-md-12
       table.table.table-dark
