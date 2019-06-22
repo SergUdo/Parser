@@ -1,5 +1,4 @@
 class MerchantsList < ApplicationRecord
-  #STORAGE_SERVICE = ActiveStorage::Service::DiskService.new(root: Rails.root.to_s + '/storage/')
   validates :address_column, presence: true
   validates :kind_column, presence: true
   validates :city_column, presence: true
@@ -21,6 +20,7 @@ class MerchantsList < ApplicationRecord
   def parse!
     open_file.each_with_index do |row, index|
       next if index.zero? && ignore_header
+
       create_merchant row
     end
   end
